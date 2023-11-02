@@ -1,0 +1,30 @@
+# Custom language servers
+
+# Add Tailwind as a language server
+[language-server.tailwind-css]
+name = "tailwind-css"
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+timeout = 5
+# Add gd-script as a language server
+[language-server.gdscript]
+name = "gdscript"
+command = "ncat"
+args = [ "127.0.0.1", "6005" ]
+
+# Custom languages config
+
+# Add tailwind to php
+[[language]]
+name = "php"
+roots = [ "tailwind.config.js" ]
+language-servers = [ "intelephense", "tailwind-css" ]
+
+[[language]]
+name = "blade"
+scope = "source.blade.php"
+roots = [ "composer.json", "tailwind.config.js" ]
+file-types = [ "blade.php" ]
+comment-token = "{{--"
+grammar = "html"
+language-servers = [ "tailwind-css" ]
